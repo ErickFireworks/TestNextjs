@@ -7,12 +7,13 @@ type Props = {
 
 export const getSucursales = () => {
   // localStorage.setItem("sucursales", JSON.stringify(sucursales));
-  const localSucursales = localStorage.getItem("sucursales");
-  return JSON.parse(localSucursales ? localSucursales : "{}");
+  // const localSucursales = localStorage.getItem("sucursales");
+  // return JSON.parse(localSucursales ? localSucursales : "[]");
+  return sucursales;
 };
 
 export const setNewSucursal = (sucursal: Props) => {
-  const sucursales = getSucursales();
-  sucursales.push(sucursal);
-  localStorage.setItem("sucursales", JSON.stringify(sucursales));
+  // const sucursalesLocal = sucursales;
+  // sucursalesLocal.push(sucursal);
+  // localStorage.setItem("sucursales", JSON.stringify(sucursalesLocal));
 };
