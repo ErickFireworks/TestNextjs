@@ -7,9 +7,9 @@ type Props = {
   name: string;
 };
 
-const sucursales = getSucursales();
-
 export const SucursalList = () => {
+  const sucursales = getSucursales();
+
   return (
     <div className="mt-5">
       <ul>

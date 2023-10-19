@@ -6,8 +6,11 @@ type Props = {
 };
 
 export const getSucursales = () => {
-  // localStorage.setItem("sucursales", JSON.stringify(sucursales));
-  // const localSucursales = localStorage.getItem("sucursales");
+  // typeof window !== "undefined"
+  //   ? localStorage.setItem("sucursales", JSON.stringify(sucursales))
+  //   : false;
+  // const localSucursales =
+  //   typeof window !== "undefined" ? localStorage.getItem("sucursales") : "[]";
   // return JSON.parse(localSucursales ? localSucursales : "[]");
   return sucursales;
 };

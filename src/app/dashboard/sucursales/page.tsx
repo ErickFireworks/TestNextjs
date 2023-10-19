@@ -1,7 +1,16 @@
+"use client";
 import { Button } from "@/components/shared/Button";
 import { SucursalList } from "../../../components/sucursal/SucursalList";
+import { Modal } from "@/components/shared/Modal";
+import { useCallback, useEffect, useState } from "react";
 
 export default function SucursalesPage() {
+  const [open, setOpen] = useState(false);
+
+  const handleModal = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="p-10">
       <h1 className="font-semibold text-6xl/[80%] text-center pb-10">
@@ -9,9 +18,10 @@ export default function SucursalesPage() {
       </h1>
       <hr />
       <div className="flex justify-end my-5">
-        <Button type="button" text="Nuevo +" />
+        <Button type="button" text="Nuevo +" handle={handleModal} />
       </div>
       <SucursalList />
+      <Modal isOpen={open} />
     </div>
   );
 }
