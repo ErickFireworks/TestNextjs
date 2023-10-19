@@ -65,7 +65,7 @@ export const LoginForm = () => {
           )}
         </div>
         <div className="text-center">
-          <Button type="submit" text="Enviar" />
+          <Button type="submit" text="Enviar" handle={() => {}} />
         </div>
       </div>
     </form>
