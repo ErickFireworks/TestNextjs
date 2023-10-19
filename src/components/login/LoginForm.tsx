@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "../shared/Input";
 import { Button } from "../shared/Button";
 import { useSwal } from "@/hooks/useSwal";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   email: string;
@@ -11,17 +12,30 @@ type FormValues = {
 };
 
 export const LoginForm = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const { showMessage } = useSwal();
+  const { succesMessage, errorMessage, closeMessage } = useSwal();
 
-  const onSubmit = async (data: FormValues) => {
-    console.log(data);
-    // showMessage();
+  const onSubmit = (data: FormValues) => {
+    if (
+      data.email == "erickalvavazquez@gmail.com" &&
+      data.password == "torti2023"
+    ) {
+      succesMessage(data.email);
+
+      setTimeout(() => {
+        closeMessage();
+        router.push("/dashboard");
+      }, 2000);
+    } else {
+      errorMessage();
+    }
   };
 
   return (

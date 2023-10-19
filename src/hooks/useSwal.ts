@@ -4,11 +4,10 @@ import withReactContent from "sweetalert2-react-content";
 export const useSwal = () => {
   const MySwal = withReactContent(Swal);
 
-  const showMessage = () => {
+  const loadingMessage = () => {
     MySwal.fire({
-      title: "<p>Hello World</p>",
+      title: "<p>Espera un momento</p>",
       didOpen: () => {
-        // `MySwal` is a subclass of `Swal` with all the same instance & static methods
         MySwal.showLoading();
       },
     }).then(() => {
@@ -16,7 +15,31 @@ export const useSwal = () => {
     });
   };
 
+  const succesMessage = (email: string) => {
+    MySwal.fire({
+      title: `<strong>¡Bienvenido ${email}!</strong>`,
+      html: `<i>Operación realizada con exitó</i>`,
+      icon: "success",
+      showConfirmButton: false,
+    });
+  };
+
+  const errorMessage = () => {
+    MySwal.fire({
+      title: "<strong>¡Usuario Incorrecto!</strong>",
+      html: "<i>Intenta de nuevo</i>",
+      icon: "error",
+    });
+  };
+
+  const closeMessage = () => {
+    MySwal.close();
+  };
+
   return {
-    showMessage,
+    loadingMessage,
+    succesMessage,
+    errorMessage,
+    closeMessage,
   };
 };
