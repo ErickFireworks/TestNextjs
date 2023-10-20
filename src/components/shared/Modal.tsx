@@ -9,10 +9,13 @@ type Props = {
 };
 
 export const Modal = ({ isOpen }: Props) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    setOpen(true);
+    setCounter(counter + 1);
+    if (counter >= 1) setOpen(true);
   }, [isOpen]);
 
   const cancelButtonRef = useRef(null);
