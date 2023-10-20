@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../shared/Input";
 import { Button } from "../shared/Button";
-import { useEffect } from "react";
 
 type FormValues = {
   bultos: string;
@@ -22,7 +21,7 @@ export const MolinoForm = ({ handle }: Props) => {
   } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
-    // handle(Number(data.bultos));
+    handle(Number(data.bultos));
   };
 
   return (

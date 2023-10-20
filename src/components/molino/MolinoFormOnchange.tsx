@@ -11,7 +11,8 @@ export const MolinoFormOnchange = ({ handle }: Props) => {
   const handleInputChange = (e: any) => {
     const value = e.target.value;
     setInputValue(value);
-    handle(Number(inputValue) * 98);
+
+    handle(Number(value) * 98);
   }; //end function
 
   const handleSubmit = (e: any) => {
@@ -40,6 +41,11 @@ export const MolinoFormOnchange = ({ handle }: Props) => {
         value={inputValue}
         onChange={handleInputChange}
       />
+      {!inputValue && (
+        <div className="mt-2 text-red-500">
+          {"El número de bultos debe ser mayor a 1"}
+        </div>
+      )}
     </form>
   );
 };
