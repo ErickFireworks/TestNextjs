@@ -6,7 +6,7 @@ export const Input = forwardRef<
 >((props, ref) => {
   return (
     <input
-      className="border border-white/50 placeholder-white placeholder-opacity-30 rounded-full bg-transparent p-4 w-full focus:border-white/100 focus:ring-transparent"
+      className="border border-white/50 placeholder-white placeholder-opacity-30 rounded bg-transparent p-4 w-full focus:border-white/100 focus:ring-transparent"
       ref={ref}
       {...props}
     />
