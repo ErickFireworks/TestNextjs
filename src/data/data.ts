@@ -9,7 +9,7 @@ export const sucursales = [
   },
   {
     id: 3,
-    name: "Lalo",
+    name: "LALO",
   },
   {
     id: 4,

@@ -1,6 +1,7 @@
 "use client";
 
 import { MolinoFormOnchange } from "@/components/molino/MolinoFormOnchange";
+import { MolinoListForm } from "@/components/molino/MolinoListForm";
 import { NavBar } from "@/components/shared/Navbar";
 import { useState } from "react";
 
@@ -29,6 +30,9 @@ export default function MolinoPage() {
               <h3 className="font-semibold text-3xl">{total}</h3>
             </div>
           </div>
+        </div>
+        <div>
+          <MolinoListForm />
         </div>
       </div>
     </>
