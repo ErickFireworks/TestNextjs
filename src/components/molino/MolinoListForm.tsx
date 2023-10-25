@@ -3,14 +3,32 @@
 import { useForm } from "react-hook-form";
 import { getSucursales } from "@/helpers/HelperSucursales";
 import { Button } from "../shared/Button";
+import { useSwal } from "@/hooks/useSwal";
 
 const sucursales = getSucursales();
 
-export const MolinoListForm = () => {
-  const { register, handleSubmit } = useForm();
+type Props = {
+  total: number;
+};
 
-  const onSubmit = (data: {}) => {
-    console.log(data);
+export const MolinoListForm = ({ total }: Props) => {
+  const { register, handleSubmit } = useForm();
+  const { succesMessage, errorMessage } = useSwal();
+
+  const onSubmit = (dataForm: any) => {
+    let totalInputs = 0;
+
+    for (const input in dataForm) {
+      totalInputs += Number(dataForm[input]);
+    }
+
+    totalInputs = totalInputs * 25;
+
+    if (totalInputs <= total) {
+      succesMessage();
+    } else {
+      errorMessage("La cantidad asignada es mayor a la existente");
+    }
   };
 
   return (
@@ -22,7 +40,7 @@ export const MolinoListForm = () => {
               <label htmlFor="">{item.name}</label>
               <input
                 className="border border-white/50 placeholder-white placeholder-opacity-30 rounded bg-transparent p-4 w-full focus:border-white/100 focus:ring-transparent"
-                type="number"
+                type="text"
                 placeholder="Asigna cantidad de maletas"
                 {...register(`${item.name}`)}
               />

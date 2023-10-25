@@ -20,21 +20,21 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const { succesMessage, errorMessage, closeMessage } = useSwal();
+  const { succesMessageLogin, errorMessageLogin, closeMessage } = useSwal();
 
   const onSubmit = (data: FormValues) => {
     if (
       data.email == "erickalvavazquez@gmail.com" &&
       data.password == "torti2023"
     ) {
-      succesMessage(data.email);
+      succesMessageLogin(data.email);
 
       setTimeout(() => {
         closeMessage();
         router.push("/dashboard");
       }, 2000);
     } else {
-      errorMessage();
+      errorMessageLogin();
     }
   };
 

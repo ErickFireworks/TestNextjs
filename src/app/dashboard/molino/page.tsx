@@ -31,7 +31,7 @@ export default function MolinoPage() {
             </div>
           </div>
         </div>
-        <div>{total > 100 && <MolinoListForm />}</div>
+        <div>{total > 100 && <MolinoListForm total={total} />}</div>
       </div>
     </>
   );

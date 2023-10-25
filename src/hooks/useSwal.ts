@@ -15,7 +15,7 @@ export const useSwal = () => {
     });
   };
 
-  const succesMessage = (email: string) => {
+  const succesMessageLogin = (email: string) => {
     MySwal.fire({
       title: `<strong>¡Bienvenido ${email}!</strong>`,
       html: `<i>Operación realizada con exitó</i>`,
@@ -24,10 +24,27 @@ export const useSwal = () => {
     });
   };
 
-  const errorMessage = () => {
+  const succesMessage = () => {
+    MySwal.fire({
+      title: `<strong>¡Éxito!</strong>`,
+      html: `<i>Operación realizada con exitó</i>`,
+      icon: "success",
+      showConfirmButton: false,
+    });
+  };
+
+  const errorMessageLogin = () => {
     MySwal.fire({
       title: "<strong>¡Usuario Incorrecto!</strong>",
       html: "<i>Intenta de nuevo</i>",
+      icon: "error",
+    });
+  };
+
+  const errorMessage = (text: string) => {
+    MySwal.fire({
+      title: "<strong>¡Error!</strong>",
+      html: `<p>${text}</p>`,
       icon: "error",
     });
   };
@@ -39,7 +56,9 @@ export const useSwal = () => {
   return {
     loadingMessage,
     succesMessage,
+    succesMessageLogin,
     errorMessage,
+    errorMessageLogin,
     closeMessage,
   };
 };
