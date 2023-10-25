@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/shared/Button";
 import { SucursalList } from "../../../components/sucursal/SucursalList";
 import { Modal } from "@/components/shared/Modal";
 import { useState } from "react";
@@ -21,7 +20,13 @@ export default function SucursalesPage() {
         </h1>
         <hr />
         <div className="flex justify-end my-5">
-          <Button type="button" text="Nuevo +" handle={handleModal} />
+          <button
+            className="border border-gray-100 rounded py-4 px-20"
+            type="button"
+            onClick={handleModal}
+          >
+            Nuevo +
+          </button>
         </div>
         <SucursalList />
         <Modal isOpen={open} />
