@@ -1,17 +1,19 @@
 "use client";
-import { useState } from "react";
 
 type Props = {
   handle: (total: number) => void;
+  inputValue: any;
+  setInputValue: any;
 };
 
-export const MolinoFormOnchange = ({ handle }: Props) => {
-  const [inputValue, setInputValue] = useState(0);
-
+export const MolinoFormOnchange = ({
+  handle,
+  inputValue,
+  setInputValue,
+}: Props) => {
   const handleInputChange = (e: any) => {
     const value = e.target.value;
     setInputValue(value);
-
     handle(Number(value) * 98);
   }; //end function
 

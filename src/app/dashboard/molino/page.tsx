@@ -4,14 +4,21 @@ import { MolinoFormOnchange } from "@/components/molino/MolinoFormOnchange";
 import { MolinoListForm } from "@/components/molino/MolinoListForm";
 import { NavBar } from "@/components/shared/Navbar";
 import { useState } from "react";
+import { useFormTotal } from "../../../hooks/useFormTotal";
+import { useFormTotalOnChange } from "@/hooks/useFormTotalOnChange";
 
 export default function MolinoPage() {
-  const [total, setTotal] = useState(0);
+  const { total, setTotal } = useFormTotal(0);
+  const { inputValue, setInputValue } = useFormTotalOnChange(0);
   const [assign, setAssign] = useState(0);
   const [spare, setSpare] = useState(0);
 
-  const handleTotal = (total: number) => {
-    setTotal(total);
+  const handleTotal = (bultos: number) => {
+    setTotal(bultos);
+    if (!bultos) {
+      setAssign(0);
+      setSpare(0);
+    }
   };
 
   const handleAssign = (assign: number) => {
@@ -22,6 +29,13 @@ export default function MolinoPage() {
     setSpare(spare);
   };
 
+  const onReserFormTotal = () => {
+    setTotal(0);
+    setInputValue(0);
+    setAssign(0);
+    setSpare(0);
+  };
+
   return (
     <>
       <NavBar />
@@ -30,7 +44,11 @@ export default function MolinoPage() {
 
         <div className="flex justify-around">
           <div className="text-center">
-            <MolinoFormOnchange handle={handleTotal} />
+            <MolinoFormOnchange
+              handle={handleTotal}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+            />
           </div>
           <div className="flex flex-row gap-4">
             <div>
@@ -67,6 +85,7 @@ export default function MolinoPage() {
               total={total}
               handleAssign={handleAssign}
               handleSpare={handleSpare}
+              handleResetFormTotal={onReserFormTotal}
             />
           )}
         </div>

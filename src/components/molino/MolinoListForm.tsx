@@ -15,9 +15,15 @@ type Props = {
   total: number;
   handleAssign: any;
   handleSpare: any;
+  handleResetFormTotal: any;
 };
 
-export const MolinoListForm = ({ total, handleAssign, handleSpare }: Props) => {
+export const MolinoListForm = ({
+  total,
+  handleAssign,
+  handleSpare,
+  handleResetFormTotal,
+}: Props) => {
   let fields: any = {};
 
   for (const element of fieldsForm) {
@@ -29,22 +35,29 @@ export const MolinoListForm = ({ total, handleAssign, handleSpare }: Props) => {
   const { formState, onInputChange, onResetForm } = useFormCustom(fields);
 
   const onSubmit = (dataForm: any) => {
-    // let totalInputs = 0;
-    // for (const input in dataForm) {
-    //   totalInputs += Number(dataForm[input]);
-    // }
-    // totalInputs = totalInputs * 25;
-    // if (totalInputs <= total) {
-    //   succesMessage();
-    // } else {
-    //   errorMessage("La cantidad asignada es mayor a la existente");
-    // }
-    // console.log(formState);
+    let totalInputs = 0;
+    for (const input in formState) {
+      totalInputs += Number(formState[input]);
+    }
+    totalInputs = totalInputs * 25;
+
+    if (totalInputs < 125) {
+      errorMessage("La cantidad asignada debe ser mayor a 125");
+      return;
+    }
+
+    if (totalInputs > Number(total)) {
+      errorMessage("La cantidad asignada es mayor a la existente");
+      return;
+    }
+
+    succesMessage();
+    onResetForm();
+    handleResetFormTotal();
+    console.log(formState);
   };
 
   useEffect(() => {
-    // console.log(formState);
-
     let suma = 0;
     for (const item in formState) {
       suma += Number(formState[item]);
@@ -57,7 +70,7 @@ export const MolinoListForm = ({ total, handleAssign, handleSpare }: Props) => {
 
   return (
     <div className="mt-5">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <div className="flex content-center flex-row w-auto gap-5 flex-wrap grow">
           {Object.keys(formState).map((item, index) => (
             <div key={index} className="my-5">
@@ -74,7 +87,14 @@ export const MolinoListForm = ({ total, handleAssign, handleSpare }: Props) => {
           ))}
         </div>
         <div className="flex flex-row gap-4 justify-center mt-5">
-          <Button type="submit" text="Asignar" />
+          {/* <Button type="submit" text="Asignar" /> */}
+          <button
+            type="button"
+            className="border border-gray-100 rounded py-4 px-20"
+            onClick={onSubmit}
+          >
+            Asignar
+          </button>
           <button
             type="button"
             className="border border-gray-100 rounded py-4 px-20"
