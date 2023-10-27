@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useFormCustom = (initialForm: any, handleSum: any) => {
+export const useFormCustom = (initialForm: any = {}) => {
   const [formState, setFormState] = useState(initialForm);
 
   const onInputChange = ({ target }: any) => {
@@ -14,8 +14,13 @@ export const useFormCustom = (initialForm: any, handleSum: any) => {
     // }
   };
 
+  const onResetForm = () => {
+    setFormState(initialForm);
+  };
+
   return {
     formState,
     onInputChange,
+    onResetForm,
   };
 };
